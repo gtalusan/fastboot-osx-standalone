@@ -1,0 +1,8 @@
+Standalone fastboot makefile for Mac OS X
+=========================================
+
+Usage:
+
+    make
+    ./fastboot
+

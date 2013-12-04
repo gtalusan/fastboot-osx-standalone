@@ -1,0 +1,9 @@
+[submodule "android_system_core"]
+	path = android_system_core
+	url = git://github.com/CyanogenMod/android_system_core.git
+[submodule "android_system_extras"]
+	path = android_system_extras
+	url = git://github.com/CyanogenMod/android_system_extras.git
+[submodule "android_external_libselinux"]
+	path = android_external_libselinux
+	url = git://github.com/CyanogenMod/android_external_libselinux.git
