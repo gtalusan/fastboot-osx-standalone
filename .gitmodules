@@ -7,3 +7,6 @@
 [submodule "android_external_libselinux"]
 	path = android_external_libselinux
 	url = git://github.com/CyanogenMod/android_external_libselinux.git
+[submodule "android_external_pcre"]
+	path = android_external_pcre
+	url = git://github.com/CyanogenMod/android_external_pcre.git

@@ -18,19 +18,28 @@
 
 
 # Host-based compliation + include headers
-CFLAGS += -DHOST \
+CFLAGS += -DHOST -DHAVE_CONFIG_H \
+    -D_FILE_OFFSET_BITS=64 \
     -Iandroid_system_core/mkbootimg \
     -Iandroid_system_core/libsparse/include \
     -Iandroid_system_core/include \
     -Iandroid_system_extras/ext4_utils \
-    -Iandroid_external_libselinux/include
+    -Iandroid_system_extras/f2fs_utils \
+    -Iandroid_external_libselinux/include \
+    -Iandroid_external_pcre \
+    -Iandroid_external_pcre/dist
 
 # Fastboot
 FASTBT := android_system_core/fastboot
 LOCAL_SRC_FILES += $(FASTBT)/protocol.c \
     $(FASTBT)/engine.c \
     $(FASTBT)/bootimg.c \
-    $(FASTBT)/fastboot.c
+    $(FASTBT)/fastboot.c \
+    $(FASTBT)/fs.c \
+    $(FASTBT)/usb_osx.c \
+    $(FASTBT)/util.c \
+    $(FASTBT)/util_osx.c
+
 LOCAL_MODULE := fastboot
 
 # libzipfile
@@ -51,6 +60,7 @@ LOCAL_SRC_FILES += $(LEXT4)/make_ext4fs.c \
     $(LEXT4)/uuid.c \
     $(LEXT4)/sha1.c \
     $(LEXT4)/wipe.c \
+    $(LEXT4)/ext4_sb.c \
     $(LEXT4)/crc16.c
 
 # libsparse_host
@@ -71,6 +81,30 @@ LOCAL_SRC_FILES += $(LSEL)/src/callbacks.c \
     $(LSEL)/src/label.c \
     $(LSEL)/src/label_file.c \
     $(LSEL)/src/label_android_property.c
+
+# libpcre
+PCRE := android_external_pcre
+LOCAL_SRC_FILES += $(PCRE)/pcre_chartables.c \
+    $(PCRE)/dist/pcre_byte_order.c \
+    $(PCRE)/dist/pcre_compile.c \
+    $(PCRE)/dist/pcre_config.c \
+    $(PCRE)/dist/pcre_dfa_exec.c \
+    $(PCRE)/dist/pcre_exec.c \
+    $(PCRE)/dist/pcre_fullinfo.c \
+    $(PCRE)/dist/pcre_get.c \
+    $(PCRE)/dist/pcre_globals.c \
+    $(PCRE)/dist/pcre_jit_compile.c \
+    $(PCRE)/dist/pcre_maketables.c \
+    $(PCRE)/dist/pcre_newline.c \
+    $(PCRE)/dist/pcre_ord2utf8.c \
+    $(PCRE)/dist/pcre_refcount.c \
+    $(PCRE)/dist/pcre_string_utils.c \
+    $(PCRE)/dist/pcre_study.c \
+    $(PCRE)/dist/pcre_tables.c \
+    $(PCRE)/dist/pcre_ucd.c \
+    $(PCRE)/dist/pcre_valid_utf8.c \
+    $(PCRE)/dist/pcre_version.c \
+    $(PCRE)/dist/pcre_xclass.c
 
 HOST_OS := darwin
 
